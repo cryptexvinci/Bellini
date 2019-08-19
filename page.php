@@ -13,7 +13,7 @@
  */
 get_header();?>
 
-<main id="main" class="site-main" role="main" itemprop="mainContentOfPage">
+<div id="main" class="site-main">
 <?php do_action( 'bellini_before_page_content' );?>
 <?php while ( have_posts() ) : the_post(); ?>
 
@@ -30,7 +30,7 @@ get_header();?>
 							'</span>'
 			);
 
-		the_title( '<h1 class="entry-title element-title single-page__title" itemprop="headline">', '</h1>' );
+		the_title( '<h1 class="entry-title element-title single-page__title">', '</h1>' );
 		bellini_breadcrumb_integration(); ?>
 	</div>
 </header>
@@ -40,10 +40,10 @@ get_header();?>
 <div class="row">
 	<?php get_sidebar('left'); ?>
 
-	<div id="primary" class="content-area single-page__content <?php bellini_sidebar_content_class(); ?>">
+	<main id="primary" role="main" class="content-area single-page__content <?php bellini_sidebar_content_class(); ?>">
 		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<div class="container--card-content">
-			<div class="entry-content" itemprop="text">
+			<div class="entry-content">
 				<?php the_content(); ?>
 				<?php
 					wp_link_pages( array(
@@ -60,7 +60,7 @@ get_header();?>
 			comments_template();
 		endif;
 	?>
-	</div>
+	</main>
 
 	<?php get_sidebar();?>
 	<?php endwhile; // End of the loop. ?>
@@ -68,5 +68,5 @@ get_header();?>
 </div>
 </div>
 </div>
-</main>
+</div>
 <?php get_footer(); ?>

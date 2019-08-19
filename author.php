@@ -7,14 +7,9 @@ $author         = get_the_author();
 $description    = get_the_author_meta( 'description' );
 $url            = esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) );
 
-// Only display if author has a description
-if ( ! $description ) {
-    return;
-}
-
 ?>
 
-<main id="main" class="site-main" role="main" itemprop="mainContentOfPage">
+<main id="main" class="site-main" role="main">
     <div class="bellini__canvas">
     <div class="row">
 

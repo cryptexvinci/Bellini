@@ -13,7 +13,7 @@ global $bellini;
 </div><!-- #content -->
 
 
-<footer id="colophon" class="site-footer container-fluid" role="contentinfo" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
+<footer id="colophon" class="site-footer container-fluid" role="contentinfo">
 
 <?php if ( is_active_sidebar( 'sidebar-footer' ) ):?>
     <aside id="secondary" class="widget-area__footer" role="complementary">

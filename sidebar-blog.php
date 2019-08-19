@@ -10,6 +10,6 @@ if ( ! is_active_sidebar( 'sidebar-blog' ) ) {
 	return;
 }
 ?>
-<aside id="secondary" class="widget-area col-md-3 widget-area--blog" role="complementary" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+<aside id="secondary" class="widget-area col-md-3 widget-area--blog" role="complementary" aria-label="Blog Sidebar">
 	<?php dynamic_sidebar( 'sidebar-blog' ); ?>
 </aside><!-- #secondary -->

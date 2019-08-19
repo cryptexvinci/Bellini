@@ -7,10 +7,11 @@
  * @package bellini
  */
 get_header(); ?>
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<div class="bellini__canvas">
+<div class="row">
+	<main id="primary" role="main" class="content-area col-md-9">
+		<section id="main" class="site-main">
 		<div class="row bellini__canvas">
-		<div itemscope itemtype="https://schema.org/SearchResultsPage">
 
 		<?php if ( have_posts() ) : ?>
 
@@ -26,7 +27,7 @@ get_header(); ?>
 					printf( esc_html__( 'Search Results for: %s', 'bellini' ), '<span>' . get_search_query() . '</span>' );
 					?>
 				</h1>
-			</header>
+			</header><!-- .page-header -->
 
 			<ol>
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -50,8 +51,9 @@ get_header(); ?>
 		 endif;
 		 ?>
 		</div>
-		</div>
-		</main><!-- #main -->
-	</section><!-- #primary -->
+		</section><!-- #main -->
+	</main><!-- #primary -->
 <?php get_sidebar(); ?>
+</div>
+</div>
 <?php get_footer(); ?>

@@ -3,8 +3,8 @@ Theme Name: Bellini
 Theme URI: https://atlantisthemes.com/bellini-woocommerce-theme/
 Author: Pangolin
 Author URI: https://twitter.com/ti_asif
-Description: Bellini is the perfect theme for creating a eCommerce (WooCommerce) store or shop. Responsive & flexible layout built with Bootstrap. Customize anything like Google Fonts, Color, Layout, logo upload, full-screen slider, header image and much more.Built with SEO in mind and has Structured Data (Schema) implemented. If you are looking for a beautiful theme with out of the box SEO compatibility & responsiveness, look no further! Check out the live demo at http://demo.atlantisthemes.com/front-page/
-Version: 1.43.7
+Description: Bellini brings your site to life with beautiful WooCommerce layouts and is the perfect ecommerce theme for your online storefront or shop. Responsive & flexible layout built with Bootstrap & underscores.me. It is built with SEO in mind and have Structured Data (Schema) implemented. If you are looking for beautiful theme with out of the box SEO compatibility, look no further! Check out the live demo at http://demo.atlantisthemes.com/front-page/
+Version: 1.45.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: bellini
@@ -128,20 +128,25 @@ pre {
     padding: 1.6em;
     max-width: 100%;
     overflow: auto;
-    font-family: 'Courier 10 Pitch',Courier,monospace;
+    font-family: monospace,serif;
     font-size: 15px;
     font-size: .9375em;
     line-height: 1.6;
     background-color: #eee;
 }
 
-code,
-kbd,
+
 tt,
 var {
-    font-family: Monaco,Consolas,'Andale Mono','DejaVu Sans Mono',monospace;
+    font-family: monospace,serif;
     font-size: 15px;
     font-size: .9375em;
+}
+
+code {
+    background: #fdefea;
+    color: #311104;
+    padding: 2px 6px;
 }
 
 abbr,
@@ -212,11 +217,6 @@ big {
 .comments-title:before {
   font-family: "Ionicons";
   content: "\f2d4";
-}
-
-.post-edit-link:before {
-  font-family: "Ionicons";
-  content: "\f2ba";
 }
 
 .nav-previous a:before{
@@ -638,13 +638,6 @@ select {
     min-height: 32px;
 }
 
-.simpleselect {
-    color: inherit;
-    font-size: inherit;
-    display: inline-block;
-    padding-right:.8em;
-}
-
 /*--------------------------------------------------------------
 # 4.0 - Tables
 --------------------------------------------------------------*/
@@ -837,7 +830,6 @@ a.page-numbers,
 .main-navigation a:visited {
   display: block;
   text-decoration: none;
-  transition: 0.3s;
 }
 .main-navigation ul {
   display: none;
@@ -881,6 +873,7 @@ a.page-numbers,
 .menu-toggle,
 .main-navigation.toggled ul {
   display: block;
+  padding: 1em 0;
 }
 
 .menu-toggle:after {
@@ -1691,13 +1684,19 @@ a:hover.page-numbers {
     padding: 2em;
 }
 
-.single-page__title {
-    margin-bottom: 1em;
-}
+.single-page__title {margin-bottom: 1em;}
 
 .page__header {
     padding: 0;
     background-size: cover;
+}
+
+.single.page-meta {
+    padding: 2em 6em;
+}
+
+.page__header .single-page__title {
+    margin-bottom: .2em
 }
 
 /*--------------------------------------------------------------
@@ -1768,10 +1767,6 @@ a:hover.page-numbers {
 /*--------------------------------------------------------------
 ## 10.4 - Footer
 --------------------------------------------------------------*/
-
-.site-footer {
-    padding: 3em 0 0 0;
-}
 
 .site-footer a:hover{opacity:0.8; text-decoration:none;}
 .site-footer .sep{opacity:0.3;}
@@ -2289,11 +2284,6 @@ object {
   text-indent: 0;
 }
 
-.single-post__content ul,
-.single-post__content ol{
-  padding:0 0 60px 20px;
-}
-
 .single-post__content h2{
   margin: 50px 0 30px;
 }
@@ -2335,25 +2325,6 @@ object {
 .single-post__excerpt {
     width: 70%;
     font-style: italic;
-}
-
-.edit-link {
-    padding: .6em;
-    border-radius: 2px;
-}
-
-.post-edit-link:before {
-    display: inline-block;
-    position: relative;
-    width: 13px;
-    margin-right: 5px;
-    text-align: center;
-    text-decoration: inherit;
-}
-
-.post-edit-link {
-    text-decoration: none;
-    color: inherit;
 }
 
 .post-meta__category {
@@ -2572,6 +2543,10 @@ object {
 .comment-body__left{
     margin-top:1em;
     text-align:right;
+}
+
+.comment-body__left .vcard img{
+    border-radius: 50%;
 }
 
 .comment-body__right{
@@ -2851,8 +2826,6 @@ object {
 .recent__post__info a{font-weight:600;}
 
  .widget_recent_comments .avatar{
-     width:65px;
-     height:65px;
      border-radius:50%;
  }
 
@@ -3369,7 +3342,14 @@ input.wpcf7-text {width: 100%;}
     flex-wrap: wrap;
 }
 
-.site-footer--center {text-align:center;}
+.site-footer--center {
+    padding-top: 1em;
+    text-align: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -o-background-size: cover;
+}
 
 .wp-custom-header img{
     margin:0 auto;

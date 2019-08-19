@@ -1,0 +1,29 @@
+<wpml-config>
+    <admin-texts>
+        <key name='theme_mods_bellini'>
+            <key name='bellini_static_slider_title' />
+            <key name='bellini_static_slider_content' />
+            <key name='bellini_static_slider_button_text-1' />
+            <key name='bellini_static_slider_button_text-2' />
+            <key name='bellini_woo_category_title' />
+            <key name='bellini_woo_category_description' />
+            <key name='woo_featured_product_title' />
+            <key name='woo_featured_product_description' />
+            <key name='bellini_woo_product_title' />
+            <key name='bellini_woo_product_description' />
+            <key name='woo_product_button_text' />
+            <key name='bellini_home_blogposts_title' />
+            <key name='bellini_home_blogposts_description' />
+            <key name='bellini_home_blogposts_button_text' />
+            <key name='bellini_feature_blocks_title' />
+            <key name='bellini_frontpage_textarea_section_field' />
+            <key name='bellini_hamburger_title' />
+            <key name='bellini_feature_block_title_one' />
+            <key name='bellini_feature_block_content_one' />
+            <key name='bellini_feature_block_title_two' />
+            <key name='bellini_feature_block_content_two' />
+            <key name='bellini_feature_block_title_three' />
+            <key name='bellini_feature_block_content_three' />
+        </key>
+    </admin-texts>
+</wpml-config>

@@ -8,8 +8,8 @@
  */
 global $bellini;
 get_header(); ?>
-<div id="primary" class="content-area">
-<main id="main" class="site-main" role="main">
+<main id="primary" role="main" class="content-area">
+<div id="main" class="site-main">
 		<?php
 		if ( have_posts() ) : ?>
 			<header class="page-header col-md-12">
@@ -21,29 +21,22 @@ get_header(); ?>
 
 			<div class="bellini__canvas">
 			<div class="row">
-			<div class="template__blog <?php bellini_blog_sidebar();?>">
-			<section class="posts__grid">
-			<div class="row">
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
-                    if ( absint($bellini['bellini_layout_blog']) === 1 ){
-                        get_template_part( 'template-parts/content' );
-                    }else{
-                            get_template_part( 'template-parts/content-lb-5');
-                    }
-			endwhile;
-					bellini_pagination();
-					echo '</div>';
-					echo '</section>';
-					echo '</div>';
-	 				get_sidebar('blog');
-	 				echo '</div>';
-		else :
-			get_template_part( 'template-parts/content', 'none' );
-		endif;
-		wp_reset_postdata(); ?>
-		</main><!-- #main -->
+				<div class="template__blog <?php bellini_blog_sidebar();?>">
+				<div class="row">
+				<?php
+				/* Start the Loop */
+						get_template_part( 'loop' );
+					else :
+						get_template_part( 'template-parts/content', 'none' );
+					endif;
+					wp_reset_postdata();
+				?>
+				</div>
+				</div>
+				<?php get_sidebar('blog');?>
+			</div>
+			</div>
 	</div><!-- #primary -->
+</main><!-- #main -->
 <?php get_footer(); ?>

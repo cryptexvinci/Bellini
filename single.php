@@ -10,11 +10,13 @@ get_header();?>
 <div class="bellini__canvas">
 <div class="row">
 <?php get_sidebar('left');?>
-	<div id="primary" class="content-area single-post__content <?php bellini_sidebar_content_class(); ?>">
-		<main id="main" class="site-main row" role="main" itemscope itemprop="mainEntityOfPage">
-		<?php while ( have_posts() ) : the_post(); ?>
+	<main id="primary" role="main" class="content-area single-post__content <?php bellini_sidebar_content_class(); ?>">
+		<div id="main" class="site-main row">
+		<?php while ( have_posts() ) : the_post();
 
-			<?php if( 'jetpack-testimonial' === get_post_type() ){
+		do_action( 'bellini_single_post_before' );
+
+			if( 'jetpack-testimonial' === get_post_type() ){
 				get_template_part( 'template-parts/content', 'testimonial' );
 			}else{
 				if ( absint($bellini['bellini_layout_single-post']) === 3 ):
@@ -22,10 +24,10 @@ get_header();?>
 				endif;
 			}
 
-			?>
-		<?php endwhile; // End of the loop. ?>
-		</main><!-- #main -->
-	</div><!-- #primary -->
+		do_action( 'bellini_single_post_after' );
+		endwhile; // End of the loop. ?>
+		</div>
+	</main>
 	<?php get_sidebar(); ?>
 </div>
 </div>

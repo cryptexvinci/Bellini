@@ -7,8 +7,8 @@
  * @package bellini
  */
 get_header(); ?>
-<div id="primary" class="content-area">
-<main id="main" class="site-main" role="main">
+<main id="primary" role="main" class="content-area">
+<div id="main" class="site-main">
 <section class="error-404 not-found bellini__canvas">
 <header class="page-header col-md-12">
 	<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'bellini' ); ?></h1>
@@ -20,6 +20,6 @@ get_header(); ?>
 	?>
 </div>
 </section>
-</main>
 </div>
+</main>
 <?php get_footer(); ?>
