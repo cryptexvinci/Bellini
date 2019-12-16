@@ -4,16 +4,16 @@ $bellini = bellini_option_defaults();
 ## WooCommerce Container Class
 --------------------------------------------------------------*/
 
-if ( ! function_exists( 'bellini_before_content' ) ):
+if ( ! function_exists( 'bellini_before_content' ) ) :
 	function bellini_before_content() { ?>
 		<div class="bellini__canvas">
-		<main id="main" class="site-main" role="main" itemprop="mainContentOfPage">
+		<main id="main" class="site-main" role="main">
 		<div class="row">
 		<?php
 	}
 endif;
 
-if ( ! function_exists( 'bellini_after_content' ) ):
+if ( ! function_exists( 'bellini_after_content' ) ) :
 	function bellini_after_content() { ?>
 		</div>
 		</main>
@@ -22,12 +22,37 @@ if ( ! function_exists( 'bellini_after_content' ) ):
 	}
 endif;
 
+if ( ! function_exists( 'bootstrap_grid_col_12' ) ) {
+    function bootstrap_grid_col_12(){
+        echo "<div class='col-md-12'>";
+    }
+}
+
+if ( ! function_exists( 'bootstrap_grid_col_6' ) ) {
+    function bootstrap_grid_col_6(){
+        echo "<div class='col-md-6'>";
+    }
+}
+
+if ( ! function_exists( 'bootstrap_grid_col_4' ) ) {
+    function bootstrap_grid_col_4(){
+        echo "<div class='col-md-4'>";
+    }
+}
+
+if ( ! function_exists( 'bellini_woocommerce_before_shop_filter' ) ) {
+    function bellini_woocommerce_before_shop_filter(){
+        global $bellini;
+        $filter_ver = absint($bellini['bellini_woo_shop_product_pagination_layout']) ;
+        echo "<div class='product-filter-wrap filter--$filter_ver row flexify--center'>";
+    }
+}
 
 /*--------------------------------------------------------------
 ## WooCommerce Product Items Container
 --------------------------------------------------------------*/
 
-if ( ! function_exists( 'bellini_before_shop_products' ) ):
+if ( ! function_exists( 'bellini_before_shop_products' ) ) :
 	function bellini_before_shop_products() {
 		global $bellini;
 		if(esc_attr($bellini['bellini_show_woocommerce_sidebar']) == true && is_active_sidebar( 'sidebar-woo-sidebar' )){
@@ -49,7 +74,7 @@ endif;
 ## WooCommerce Sidebar
 --------------------------------------------------------------*/
 
-if ( ! function_exists( 'bellini_woocommerce_shop_sidebar' ) ):
+if ( ! function_exists( 'bellini_woocommerce_shop_sidebar' ) ) :
 	function bellini_woocommerce_shop_sidebar() {
 		global $bellini;
 		?>
@@ -74,9 +99,12 @@ endif;
 --------------------------------------------------------------*/
 
 add_filter( 'loop_shop_per_page', 'bellini_woo_product_per_page', 20 );
-function bellini_woo_product_per_page( $count ) {
-	global $bellini;
-    return absint($bellini['bellini_woo_shop_product_per_page']);
+
+if ( ! function_exists( 'bellini_woo_product_per_page' ) ) {
+    function bellini_woo_product_per_page( $count ) {
+    	global $bellini;
+        return absint($bellini['bellini_woo_shop_product_per_page']);
+    }
 }
 
 
@@ -84,12 +112,12 @@ function bellini_woo_product_per_page( $count ) {
 ## Bellini WooCommerce Price
 --------------------------------------------------------------*/
 
-if ( ! function_exists( 'bellini_woocommerce_template_loop_price' ) ):
+if ( ! function_exists( 'bellini_woocommerce_template_loop_price' ) ) :
 	function bellini_woocommerce_template_loop_price() {
 		global $product; ?>
-		<div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="product-card__info__price">
+		<div class="product-card__info__price">
 			<?php if ( $price_html = $product->get_price_html() ) : ?>
-				<span itemprop="price" class="price">
+				<span class="price">
 					<?php echo $price_html; ?>
 				</span>
 			<?php endif; ?>
@@ -102,58 +130,27 @@ endif;
 ## Bellini WooCommerce Product Sorting
 --------------------------------------------------------------*/
 
-function bellini_woo_pagination(){
-		global $wp_query;
-		if ( woocommerce_products_will_display() ) {
-			bellini_pagination();
-		}
+if ( ! function_exists( 'bellini_woo_pagination' ) ) {
+    function bellini_woo_pagination(){
+    		global $wp_query;
+    		if ( woocommerce_products_will_display() ) {
+    			bellini_pagination();
+    		}
+    }
 }
-
-/* Layout 1 */
-
-if ( ! function_exists( 'bellini_shop_archive_sorting_info' ) ):
-	function bellini_shop_archive_sorting_info() { ?>
-		<div class="col-md-12 woo__info__sorting">
-		<div class="row">
-			<div class="col-md-3">
-				<?php woocommerce_catalog_ordering();?>
-			</div>
-			<div class="col-md-6 text-center">
-				<?php woocommerce_result_count();?>
-			</div>
-			<div class="col-md-3 text-right">
-				<?php bellini_woo_pagination();?>
-			</div>
-		</div>
-		</div>
-		<?php
-	}
-endif;
-
-/* Layout 2 */
-
-if ( ! function_exists( 'bellini_woo_pagination_two_sorting' ) ):
-	function bellini_woo_pagination_two_sorting() { ?>
-		<div class="col-md-12 text-center pagination__sorting--l2">
-			<?php
-			esc_html_e('Sort by:','bellini');
-			woocommerce_catalog_ordering();
-			?>
-		</div>
-		<?php
-	}
-endif;
-
 
 /*--------------------------------------------------------------
 ## WooCommerce Stylesheets
 --------------------------------------------------------------*/
 
 add_filter( 'woocommerce_enqueue_styles', 'bellini_woo__dequeue_styles' );
-function bellini_woo__dequeue_styles( $enqueue_styles ) {
-	unset( $enqueue_styles['woocommerce-layout'] );
-	unset( $enqueue_styles['woocommerce-smallscreen'] );			// Remove the layout
-	return $enqueue_styles;
+
+if ( ! function_exists( 'bellini_woo__dequeue_styles' ) ) {
+    function bellini_woo__dequeue_styles( $enqueue_styles ) {
+    	unset( $enqueue_styles['woocommerce-layout'] );
+    	unset( $enqueue_styles['woocommerce-smallscreen'] );			// Remove the layout
+    	return $enqueue_styles;
+    }
 }
 
 /*--------------------------------------------------------------
@@ -166,7 +163,7 @@ if ( ! function_exists( 'bellini_before_woo_product_archive_item_one' ) ):
 	function bellini_before_woo_product_archive_item_one() {
 		global $bellini;
 		$woo_product_column = esc_attr($bellini['bellini_woo_shop_product_column']);?>
-		<div itemscope itemtype="http://schema.org/Product" class="product--l1 product-holder--l1 <?php echo $woo_product_column;?>">
+		<div class="product--l1 product-holder--l1 <?php echo $woo_product_column;?>">
 		<div class="product-card__inner">
 		<?php
 	}
@@ -199,26 +196,30 @@ endif;
 
 if ( ! function_exists( 'bellini_woo_product_info_title_archive_item' ) ):
 	function bellini_woo_product_info_title_archive_item() { ?>
-		<div itemprop="name" class="product-card__info__product">
+		<div class="product-card__info__product">
 		<?php
 	}
 endif;
 
-function bellini_single_product_one_left(){
-	echo '<div class="col-sm-8 clearfix product__single--l1">';
+if ( ! function_exists( 'bellini_single_product_one_left' ) ) {
+    function bellini_single_product_one_left(){
+    	echo '<div class="col-sm-8 clearfix product__single--l1">';
+    }
 }
 
-function bellini_single_product_one_right(){
-	echo '<div class="col-sm-4 product__single--l1">';
+if ( ! function_exists( 'bellini_single_product_one_right' ) ) {
+    function bellini_single_product_one_right(){
+    	echo '<div class="col-sm-4 product__single--l1">';
+    }
 }
 
-function bellini_column_twelve(){
-	echo '<div class="col-sm-12">';
+if ( ! function_exists( 'bellini_column_twelve' ) ) {
+    function bellini_column_twelve(){
+    	echo '<div class="col-sm-12">';
+    }
 }
-
 
 if (  ! function_exists( 'bellini_product_cat_class' ) ) {
-
     function bellini_product_cat_class() {
 		global $bellini;
         $classes[] = esc_attr($bellini['bellini_woo_shop_product_column']);
@@ -228,15 +229,17 @@ if (  ! function_exists( 'bellini_product_cat_class' ) ) {
     }
 
 }
+
 add_filter( 'product_cat_class' , 'bellini_product_cat_class' );
 
 /*--------------------------------------------------------------
 ## Checkout Order Heading
 --------------------------------------------------------------*/
-
+if (  ! function_exists( 'bellini_woo_order_heading' ) ) {
 function bellini_woo_order_heading(){ ?>
 	<h3 class="order_review_heading"><?php _e( 'Your order', 'bellini' ); ?></h3>
 <?php }
+}
 
 
 /*--------------------------------------------------------------
@@ -244,7 +247,6 @@ function bellini_woo_order_heading(){ ?>
 --------------------------------------------------------------*/
 
 if (  ! function_exists( 'bellini_header_cart_class' ) ) {
-
     function bellini_header_cart_class() {
     	if(WC()->cart->get_cart_contents_count() === 0){
     		echo "empty__cart";
@@ -273,19 +275,20 @@ endif;
 /*--------------------------------------------------------------
 ## WooCommerce Native Widget
 --------------------------------------------------------------*/
+if ( ! function_exists( 'bellini_woo_register_widgets' ) ) {
+    function bellini_woo_register_widgets() {
 
-function bellini_woo_register_widgets() {
+        unregister_widget( 'WC_Widget_Top_Rated_Products' );
+        unregister_widget( 'WC_Widget_Products' );
+        unregister_widget( 'WC_Widget_Recently_Viewed' );
 
-    unregister_widget( 'WC_Widget_Top_Rated_Products' );
-    unregister_widget( 'WC_Widget_Products' );
-    unregister_widget( 'WC_Widget_Recently_Viewed' );
+        if ( 'yes' === get_option( 'woocommerce_enable_reviews', 'yes' ) ) {
+             register_widget( 'Bellini_Woo_Top_product_Widget' );
+        }
 
-    if ( 'yes' === get_option( 'woocommerce_enable_reviews', 'yes' ) ) {
-         register_widget( 'Bellini_Woo_Top_product_Widget' );
+        register_widget( 'Bellini_Woo_Product_Widget' );
+        register_widget( 'Bellini_Woo_recently_viewed_product_Widget' );
     }
-
-    register_widget( 'Bellini_Woo_Product_Widget' );
-    register_widget( 'Bellini_Woo_recently_viewed_product_Widget' );
 }
 
 add_action( 'widgets_init', 'bellini_woo_register_widgets' );
@@ -486,4 +489,47 @@ class Bellini_Woo_recently_viewed_product_Widget extends WC_Widget_Recently_View
         echo $content;
     }
 
+}
+
+
+
+/**
+ * Modify the default WooCommerce orderby dropdown labels in the mini-bar.
+ */
+if ( ! function_exists( 'bellini_woocommerce_catalog_orderby_labels' ) ) {
+    function bellini_woocommerce_catalog_orderby_labels( $orderby ) {
+        $orderby['menu_order'] = esc_html__( 'All', 'bellini' );
+        $orderby['popularity'] = esc_html__( 'Popularity', 'bellini' );
+        $orderby['rating']     = esc_html__( 'Rating', 'bellini' );
+        $orderby['date']       = esc_html__( 'Newest', 'bellini' );
+        $orderby['price']      = esc_html__( 'Price: Low to High', 'bellini' );
+        $orderby['price-desc'] = esc_html__( 'Price: High to Low', 'bellini' );
+
+        return $orderby;
+    }
+}
+
+
+
+/**
+* Reset Filters for Premmerce WooCommerce Product Filter Pro
+*/
+if ( !function_exists( 'bellini_premmerce_active_filters_widget' ) ) {
+    function bellini_premmerce_active_filters_widget() {
+
+        if ( function_exists( 'premmerce_pwpf_fs' ) ) {
+            ob_start();
+            the_widget( 'Premmerce\\Filter\\Widget\\ActiveFilterWidget' );
+            $widget = ob_get_clean();
+
+            if ( trim( strip_tags( $widget ) ) != '' ) : ?>
+                <div class="content__row content__row--sm">
+                    <div class="pc-active-filter pc-active-filter--hor">
+                        <?php echo $widget; ?>
+                    </div>
+                </div>
+            <?php
+            endif;
+        }
+    }
 }

@@ -21,10 +21,10 @@ global $bellini;
 	    	$cat_thumb_url[0] = get_parent_theme_file_uri( '/images/category-image.png');
 	    endif;
 	    ?>
-		<div itemprop="category" class="front-product-category__card <?php echo $bellini['woo_product_category_row'];?>">
+		<div class="front-product-category__card <?php echo $bellini['woo_product_category_row'];?>">
 		<div class="front-product-category__card__inner">
 		<a href="<?php echo $term_link; ?>">
-		    <img src="<?php echo $cat_thumb_url[0];?>" class="img-responsive" alt="<?php echo $prod_cat->name; ?>" itemprop="image" />
+		    <img src="<?php echo $cat_thumb_url[0];?>" class="img-responsive" alt="<?php echo $prod_cat->name; ?>"/>
 		    <h3 class="category_title">
 		    	<?php echo $prod_cat->name;?>
 		    </h3>

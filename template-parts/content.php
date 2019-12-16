@@ -8,7 +8,7 @@
  */
 global $bellini;
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class();?> itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+<article id="post-<?php the_ID(); ?>" <?php post_class();?>>
 <div class="row">
 <div class="blog__post col-md-12">
 
@@ -20,13 +20,12 @@ global $bellini;
 	    <div class="blog__post__right">
 	    	<div class="blog-post__meta">
 		    	<?php bellini_published_on();?>
-		    	<meta itemprop="author" content="<?php the_author_link(); ?>">
 	    	</div>
 		    <header class="entry-header">
-				<?php the_title( sprintf( '<h3 itemprop="headline" class="entry-title"><a href="%s" class="element-title element-title--post" rel="bookmark" itemprop="name">',
+				<?php the_title( sprintf( '<h3 class="entry-title"><a href="%s" class="element-title element-title--post">',
 				esc_url( get_permalink() ) ), '</a></h3>' ); ?>
 			</header><!-- .entry-header -->
-		    <div class="blog__post__excerpt" itemprop="description">
+		    <div class="blog__post__excerpt">
 		       <?php
 					the_excerpt( sprintf(
 					/* translators: %s: Name of current post. */

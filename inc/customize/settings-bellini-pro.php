@@ -32,13 +32,7 @@ $bellini_frontpage_section_pro_conversion 				= sprintf( __( 'You are missing ou
 ## Frontpage Sections
 --------------------------------------------------------------*/
 
-// Go Premium
-$wp_customize->add_section('bellini_lite_go_premium_section_one',array(
-	'title' => esc_html__( 'Go Premium', 'bellini' ),
-	'capability' => 'edit_theme_options',
-	'priority' => 500,
-	)
-);
+
 
 
 	$wp_customize->add_setting( 'bellini[bellini_frontpage_section_conversion_one]',

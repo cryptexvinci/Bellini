@@ -8,11 +8,10 @@
  */
 ?>
 
-<li itemscope itemtype="https://schema.org/Thing">
+<li>
 
 	<header class="entry-header">
-	<!-- Standard URL and name itemprops -->
-		<?php the_title( '<h2 class="entry-title" itemprop="name"><a href="' . esc_url( get_permalink() ) . '" itemprop="url">', '</a></span>' ); ?>
+		<?php the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" itemprop="url">', '</a></span>' ); ?>
 	</header>
 
 	<?php
@@ -25,7 +24,7 @@
 	} ?>
 
 	<!-- A description of the post content - the excerpt -->
-	<div itemprop="description">
+	<div>
 		<?php
 		/**
 		 * Customize the Read More link by using the "excerpt_more" filter
@@ -36,5 +35,5 @@
 
 		the_excerpt();
 		?>
-	</div><!--/itemprop=description-->
+	</div>
 </li>

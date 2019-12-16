@@ -1,16 +1,4 @@
 <?php
-
-// Typography
-$wp_customize->add_section('bellini_typography',
-	array(
-		'title' => esc_html__( 'Typography', 'bellini' ),
-		'capability' => 'edit_theme_options',
-		'priority' => 10,
-		'panel' => 'bellini_colors_panel'
-	)
-);
-
-
 /*--------------------------------------------------------------
 ## Typography
 --------------------------------------------------------------*/
@@ -46,12 +34,12 @@ $wp_customize->add_section('bellini_typography',
 
 	    $wp_customize->add_control( 'bellini_logo_typography_font', array(
 	        'type'                  => 'select',
-	        'section'               => 'bellini_typography',
+	        'section'               => 'title_tagline',
 	        'settings'    			=> 'bellini[bellini_logo_typography_font]',
 	        'label'                 => esc_html__( 'Logo or Site Title Font', 'bellini' ),
 	        'description'           => esc_html__( 'Applies to site title', 'bellini' ),
 	        'choices'               => bellii_logo_fonts(),
-	        'priority' => 2,
+	        'priority' => 5,
 	    ) );
 
 
@@ -90,7 +78,7 @@ $wp_customize->add_section('bellini_typography',
 
 			$wp_customize->add_control( new Bellini_UI_Helper_Title ( $wp_customize, 'bellini_typography_font_size_heading_helper', array(
 					'type' => 'info',
-					'label' => esc_html__('Font Size','bellini'),
+					'label' => esc_html__('Body Font Settings','bellini'),
 					'description' => esc_html__('If you want to set your font size to 26px, just write 26','bellini'),
 					'section' => 'bellini_typography',
 					'settings'    => 'bellini[bellini_typography_font_size_heading_helper]',
@@ -110,7 +98,7 @@ $wp_customize->add_section('bellini_typography',
 				'label' => esc_html__('Body Font Size','bellini'),
 				'section' => 'bellini_typography',
 				'settings' => 'bellini[bellini_body_font_size]',
-				'priority'   => 4,
+				'priority'   => 5,
 			) );
 
 
@@ -126,7 +114,7 @@ $wp_customize->add_section('bellini_typography',
 				'label' => esc_html__('Title Font Size','bellini'),
 				'section' => 'bellini_typography',
 				'settings' => 'bellini[bellini_title_font_size]',
-				'priority'   => 5,
+				'priority'   => 11,
 			) );
 
 
@@ -140,9 +128,9 @@ $wp_customize->add_section('bellini_typography',
 			$wp_customize->add_control('bellini_menu_font_size', array(
 				'type' => 'number',
 				'label' => esc_html__('Menu Font Size','bellini'),
-				'section' => 'bellini_typography',
+				'section' => 'bellini_header_color_section',
 				'settings' => 'bellini[bellini_menu_font_size]',
-				'priority'   => 6,
+				'priority'   => 21,
 			) );
 
 /*--------------------------------------------------------------
@@ -159,7 +147,7 @@ $wp_customize->add_section('bellini_typography',
 
 			$wp_customize->add_control( new Bellini_UI_Helper_Title ( $wp_customize, 'bellini_typography_font_style_heading_helper', array(
 					'type' => 'info',
-					'label' => esc_html__('Font Style','bellini'),
+					'label' => esc_html__('Title Font Settings','bellini'),
 					'section' => 'bellini_typography',
 					'settings'    => 'bellini[bellini_typography_font_style_heading_helper]',
 					'priority'   => 7,
@@ -206,10 +194,10 @@ $wp_customize->add_section('bellini_typography',
 		$wp_customize->add_control( 'bellini_widget_title_alignment',
 			array(
 				'label'      	=> esc_html__( 'Title Alignment - Widgets', 'bellini' ),
-				'section'    	=> 'bellini_typography',
+				'section'    	=> 'bellini_widget_color_section',
 				'settings'   	=> 'bellini[bellini_widget_title_alignment]',
 				'sanitize_callback' => 'esc_attr',
-			    'priority'   	=> 9,
+			    'priority'   	=> 32,
 			    'type'       	=> 'radio',
 					'choices'   => array(
 							'left'   	=> esc_html__( 'Left', 'bellini' ),

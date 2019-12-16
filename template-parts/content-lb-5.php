@@ -11,15 +11,15 @@
 	global $post;
 	$author_id=$post->post_author;
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class("post-item post-item--l5 col-sm-4");?> itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+<article id="post-<?php the_ID(); ?>" <?php post_class("post-item post-item--l5 col-sm-4");?>>
 <div class="blog__post--l5 row">
 	<div class="col-xs-12 post-content--l5">
 		<?php bellini_category(); ?>
 	<header class="entry-header post-title--l5">
-		<?php the_title( sprintf( '<h3 itemprop="headline" class="entry-title"><a href="%s" class="element-title element-title--post" rel="bookmark" itemprop="name">',
+		<?php the_title( sprintf( '<h3 class="entry-title"><a href="%s" class="element-title element-title--post" rel="bookmark">',
 				esc_url( get_permalink() ) ), '</a></h3>' ); ?>
 	</header>
-	<div class="blog__post__excerpt--l5" itemprop="description">
+	<div class="blog__post__excerpt--l5">
 		<?php
 			the_excerpt( sprintf(
 			/* translators: %s: Name of current post. */

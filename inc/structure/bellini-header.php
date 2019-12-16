@@ -1,86 +1,87 @@
 <?php
 
-
-function bellini_header_logo(){ ?>
-	<?php
-	// Check if Logo is Active
-		if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ):
-			the_custom_logo();
-		else: ?>
-		<!-- Display the Sitename as Logo -->
-			<p class="site-title" itemprop="headline">
-				<a itemprop="url" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-					<?php bloginfo( 'name' ); ?>
-				</a>
-			</p>
-	<?php endif;
-		$description = get_bloginfo( 'description', 'display' );
-		if ( $description || is_customize_preview() ) : ?>
-			<p class="site-description" itemprop="description">
-				<?php echo $description; ?>
-			</p>
-		<?php endif; ?>
-<?php }
-
-
-function bellini_header_menu(){
-global $bellini;
-
-if ( $bellini['bellini_menu_layout'] == 'hamburger' ):?>
-
-			<!-- Hamburger Menu -->
-			<div class="hamburger__menu__full">
-			<div class="row hamburger__menu__middle" aria-controls="primary-menu" aria-expanded="true">
-
-			<div class="col-xs-12 hamburger__site-title" itemprop="headline">
-				<a itemprop="url" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-				<?php bloginfo( 'name' ); ?>
-				</a>
-				<a class="ham__close"><?php esc_attr_e( 'Close', 'bellini' ); ?></a>
-			</div>
-
-				<div class="col-md-12 col-xs-12 site-header-cart menu clearfix">
-				<nav id="site-navigation-ham" aria-label="site links" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'main-nav' ) ); ?>
-				</nav>
-				</div>
-			</div>
-		</div>
-		<!-- Mobile Menu Hamburger Icon -->
-		<button class="hamburger hamburger--spring" type="button" aria-controls="primary-menu" aria-expanded="false">
-		  <span class="hamburger-box">
-		    <span class="hamburger-inner"></span>
-		  </span>
-		  <?php if($bellini['bellini_hamburger_title'] == true){
-		  		echo '<p>';
-		        echo esc_html($bellini['bellini_hamburger_title']);
-		        echo '</p>';
-			}?>
-		</button>
-
-		<?php else:?>
-
+if ( ! function_exists( 'bellini_header_logo' ) ) {
+	function bellini_header_logo(){ ?>
 		<?php
-			//Support for Max Mega Menu
-			 if ( class_exists( 'Mega_Menu_Nav_Menus' ) && max_mega_menu_is_enabled('primary') ) { ?>
-				<nav id="site-navigation" class="main-navigation" role="navigation">
-			    <button class="menu-toggle"><?php _e( 'Menu', 'bellini' ); ?></button>
-			    <a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to content', 'bellini' ); ?>"><?php _e( 'Skip to content', 'bellini' ); ?></a>
-			    <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu', ) ); ?>
-			</nav><!-- #site-navigation -->
-			<?php }else{ ?>
-
-			<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="site links" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-				<button class="menu-toggle" aria-controls="top-menu" aria-expanded="false">
-					<?php esc_html_e( 'Menu', 'bellini' ); ?>
-				</button>
-				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
-			</nav><!-- #site-navigation -->
-
-			<?php }
-			endif;
+		// Check if Logo is Active
+			if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ):
+				the_custom_logo();
+			else: ?>
+			<!-- Display the Sitename as Logo -->
+				<p class="site-title">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<?php bloginfo( 'name' ); ?>
+					</a>
+				</p>
+		<?php endif;
+			$description = get_bloginfo( 'description', 'display' );
+			if ( $description || is_customize_preview() ) : ?>
+				<p class="site-description">
+					<?php echo $description; ?>
+				</p>
+			<?php endif; ?>
+	<?php }
 }
 
+if ( ! function_exists( 'bellini_header_menu' ) ) {
+	function bellini_header_menu(){
+	global $bellini;
+
+	if ( $bellini['bellini_menu_layout'] == 'hamburger' ):?>
+
+				<!-- Hamburger Menu -->
+				<div class="hamburger__menu__full">
+				<div class="row hamburger__menu__middle" aria-controls="primary-menu" aria-expanded="true">
+
+				<div class="col-xs-12 hamburger__site-title">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+					<?php bloginfo( 'name' ); ?>
+					</a>
+					<a class="ham__close"><?php esc_attr_e( 'Close', 'bellini' ); ?></a>
+				</div>
+
+					<div class="col-md-12 col-xs-12 site-header-cart menu clearfix">
+					<nav id="site-navigation-ham" aria-label="site links">
+						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'main-nav' ) ); ?>
+					</nav>
+					</div>
+				</div>
+			</div>
+			<!-- Mobile Menu Hamburger Icon -->
+			<button class="hamburger hamburger--spring" type="button" aria-controls="primary-menu" aria-expanded="false">
+			  <span class="hamburger-box">
+			    <span class="hamburger-inner"></span>
+			  </span>
+			  <?php if($bellini['bellini_hamburger_title'] == true){
+			  		echo '<p>';
+			        echo esc_html($bellini['bellini_hamburger_title']);
+			        echo '</p>';
+				}?>
+			</button>
+
+			<?php else:?>
+
+			<?php
+				//Support for Max Mega Menu
+				 if ( class_exists( 'Mega_Menu_Nav_Menus' ) && max_mega_menu_is_enabled('primary') ) { ?>
+					<nav id="site-navigation" class="main-navigation" role="navigation">
+				    <button class="menu-toggle"><?php _e( 'Menu', 'bellini' ); ?></button>
+				    <a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to content', 'bellini' ); ?>"><?php _e( 'Skip to content', 'bellini' ); ?></a>
+				    <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu', ) ); ?>
+				</nav><!-- #site-navigation -->
+				<?php }else{ ?>
+
+				<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="site links">
+					<button class="menu-toggle" aria-controls="top-menu" aria-label="Toggle navigation" aria-expanded="false">
+						<?php esc_html_e( 'Menu', 'bellini' ); ?>
+					</button>
+					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
+				</nav><!-- #site-navigation -->
+
+				<?php }
+				endif;
+	}
+}
 
 
 if ( ! function_exists( 'bellini_product_search' ) ) {
@@ -141,24 +142,25 @@ if ( ! function_exists( 'bellini_header_cart' ) ) {
 	}
 }
 
-
-function bellini_top_header(){
-	if(is_woocommerce_activated()){?>
-	<div class="bellini__cart">
-		<ul class="header_cart_fragments">
-			<li class="header__cart">
-				<?php bellini_header_cart(); ?>
-			</li>
-			<li class="header__search">
-				<?php bellini_product_search(); ?>
-			</li>
-		</ul>
-	</div>
-<?php
+if ( ! function_exists( 'bellini_top_header' ) ) {
+	function bellini_top_header(){
+		if(is_woocommerce_activated()){?>
+		<div class="bellini__cart">
+			<ul class="header_cart_fragments">
+				<li class="header__cart">
+					<?php bellini_header_cart(); ?>
+				</li>
+				<li class="header__search">
+					<?php bellini_product_search(); ?>
+				</li>
+			</ul>
+		</div>
+	<?php
+		}
 	}
 }
 
-
+if ( ! function_exists( 'bellini_social_menu' ) ) {
 function bellini_social_menu(){
 	global $bellini;
 ?>
@@ -223,47 +225,51 @@ function bellini_social_menu(){
 	</div>
 
 <?php }
-
-function bellini_other_header_items(){
-	global $bellini;
-	if ( $bellini['bellini_other_header_items_selector'] === 1 ):
-		bellini_top_header();
-	endif;
-
-	if ( $bellini['bellini_other_header_items_selector'] === 2 ):
-		bellini_social_menu();
-	endif;
 }
 
+if ( ! function_exists( 'bellini_other_header_items' ) ) {
+	function bellini_other_header_items(){
+		global $bellini;
+		if ( $bellini['bellini_other_header_items_selector'] === 1 ):
+			bellini_top_header();
+		endif;
 
-function bellini_core_header(){
-	global $bellini;
+		if ( $bellini['bellini_other_header_items_selector'] === 2 ):
+			bellini_social_menu();
+		endif;
+	}
+}
 
-	if ( $bellini['bellini_header_menu_layout'] === 1 ):
+if ( ! function_exists( 'bellini_core_header' ) ) {
+	function bellini_core_header(){
+		global $bellini;
 
-		if ( $bellini['bellini_menu_layout'] == 'hamburger' ):?>
-			<div class="site-branding col-md-6 header--one__logo"><?php bellini_header_logo();?></div>
-			<div class="col-md-6 text-right header--one__menu"><?php bellini_header_menu();?></div>
-		<?php else:?>
-			<div class="site-branding col-md-4 header--one__logo"><?php bellini_header_logo();?></div>
-			<div class="col-md-8 text-right header--one__menu"><?php bellini_header_menu();?></div>
-		<?php endif; ?>
-	<?php endif; ?>
+		if ( $bellini['bellini_header_menu_layout'] === 1 ):
 
-	<?php if ( $bellini['bellini_header_menu_layout'] === 2 ):
 			if ( $bellini['bellini_menu_layout'] == 'hamburger' ):?>
-				<div class="col-md-6 header--two__menu"><?php bellini_header_menu();?></div>
-				<div class="site-branding col-md-6 text-right header--two__logo"><?php bellini_header_logo();?></div>
+				<div class="site-branding col-md-6 header--one__logo"><?php bellini_header_logo();?></div>
+				<div class="col-md-6 text-right header--one__menu"><?php bellini_header_menu();?></div>
 			<?php else:?>
-				<div class="col-md-8 header--two__menu"><?php bellini_header_menu();?></div>
-				<div class="site-branding col-md-4 text-right header--two__logo"><?php bellini_header_logo();?></div>
+				<div class="site-branding col-md-4 header--one__logo"><?php bellini_header_logo();?></div>
+				<div class="col-md-8 text-right header--one__menu"><?php bellini_header_menu();?></div>
+			<?php endif; ?>
 		<?php endif; ?>
-	<?php endif; ?>
 
-	<?php if ( $bellini['bellini_header_menu_layout'] === 3 ): ?>
-		<div class="site-branding col-md-2 header--three__logo"><?php bellini_header_logo();?></div>
-		<div class="col-md-8 text-center header--three__menu"><?php bellini_header_menu();?></div>
-		<div class="col-md-2 header--three__other"><?php bellini_other_header_items();?></div>
-	<?php endif; ?>
+		<?php if ( $bellini['bellini_header_menu_layout'] === 2 ):
+				if ( $bellini['bellini_menu_layout'] == 'hamburger' ):?>
+					<div class="col-md-6 header--two__menu"><?php bellini_header_menu();?></div>
+					<div class="site-branding col-md-6 text-right header--two__logo"><?php bellini_header_logo();?></div>
+				<?php else:?>
+					<div class="col-md-8 header--two__menu"><?php bellini_header_menu();?></div>
+					<div class="site-branding col-md-4 text-right header--two__logo"><?php bellini_header_logo();?></div>
+			<?php endif; ?>
+		<?php endif; ?>
 
-<?php }
+		<?php if ( $bellini['bellini_header_menu_layout'] === 3 ): ?>
+			<div class="site-branding col-md-2 header--three__logo"><?php bellini_header_logo();?></div>
+			<div class="col-md-8 text-center header--three__menu"><?php bellini_header_menu();?></div>
+			<div class="col-md-2 header--three__other"><?php bellini_other_header_items();?></div>
+		<?php endif; ?>
+
+	<?php }
+}

@@ -7,7 +7,7 @@
  * @package bellini
  */
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 <div class="container--card-content">
 <header class="entry-header">
 	<div class="single post-meta">
@@ -25,11 +25,11 @@
 			);
 		?>
 	</div>
-	<?php 
-			the_title( '<h1 class="entry-title element-title single-page__title" itemprop="headline">', '</h1>' );
+	<?php
+			the_title( '<h1 class="entry-title element-title single-page__title">', '</h1>' );
 	?>
 </header><!-- .entry-header -->
-<div class="entry-content" itemprop="text">
+<div class="entry-content">
 	<?php the_content(); ?>
 	<?php
 		wp_link_pages( array(

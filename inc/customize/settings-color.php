@@ -1,39 +1,4 @@
 <?php
-
-/*--------------------------------------------------------------
-## Color & Typography : Sections
---------------------------------------------------------------*/
-
-// Background Color
-$wp_customize->add_section('section_color',array(
-	'title' => esc_html__( 'Background Color', 'bellini' ),
-	'capability' => 'edit_theme_options',
-	'priority' => 1,
-	'panel' => 'bellini_colors_panel'
-	)
-);
-
-// Text Color
-$wp_customize->add_section('text_color',array(
-	'title' => esc_html__( 'Text Color', 'bellini' ),
-	'capability' => 'edit_theme_options',
-	'priority' => 2,
-	'panel' => 'bellini_colors_panel'
-	)
-);
-
-
-// Button Color
-$wp_customize->add_section('bellini_link_color_section',array(
-	'title' => esc_html__( 'Buttons & Links Color', 'bellini' ),
-	'capability' => 'edit_theme_options',
-	'priority' => 4,
-	'panel' => 'bellini_colors_panel'
-	)
-);
-
-
-
 /*--------------------------------------------------------------
 ## Background Color
 --------------------------------------------------------------*/
@@ -51,7 +16,7 @@ $wp_customize->add_section('bellini_link_color_section',array(
 		$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'header_background_color',
 			array(
 				'label'      => esc_html__( 'Header Background Color', 'bellini' ),
-				'section'    => 'section_color',
+				'section'    => 'bellini_header_color_section',
 				'settings'   => 'bellini[header_background_color]',
 			    'priority'   => 3
 			)
@@ -71,7 +36,7 @@ $wp_customize->add_section('bellini_link_color_section',array(
 		$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'widgets_background_color',
 			array(
 				'label'      => esc_html__( 'Widget Area Background Color', 'bellini' ),
-				'section'    => 'section_color',
+				'section'    => 'bellini_widget_color_section',
 				'settings'   => 'bellini[widgets_background_color]',
 			    'priority'   => 4,
 			)
@@ -91,7 +56,7 @@ $wp_customize->add_section('bellini_link_color_section',array(
 		$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'footer_background_color',
 			array(
 				'label'      => esc_html__( 'Footer Background Color', 'bellini' ),
-				'section'    => 'section_color',
+				'section'    => 'bellini_layout_settings_footer',
 				'settings'   => 'bellini[footer_background_color]',
 			    'priority'   => 6
 			)
@@ -134,7 +99,7 @@ $wp_customize->add_section('bellini_link_color_section',array(
 
 		$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'title_text_color',
 			array(
-				'label'      	=> esc_html__( 'Title Text Color', 'bellini' ),
+				'label'      	=> esc_html__( 'Heading Text Color', 'bellini' ),
 				'description'	=> esc_html__( 'Applies to all the titles', 'bellini' ),
 				'section'    	=> 'text_color',
 				'settings'   	=> 'bellini[title_text_color]',
@@ -146,6 +111,7 @@ $wp_customize->add_section('bellini_link_color_section',array(
 	// Logo Text Color
 	$wp_customize->get_control('header_textcolor')->label = esc_html__('Logo Title Color', 'bellini');
 	$wp_customize->get_control('header_textcolor')->priority = 6;
+	$wp_customize->get_control('header_textcolor')->section = 'title_tagline';
 
 	// Menu Text Color -- Settings
 	$wp_customize->add_setting( 'bellini[menu_text_color]' ,
@@ -160,28 +126,11 @@ $wp_customize->add_section('bellini_link_color_section',array(
 		$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'menu_text_color',
 			array(
 				'label'      => esc_html__( 'Menu or Navigation Color', 'bellini' ),
-				'section'    => 'text_color',
+				'section'    => 'bellini_header_color_section',
 				'settings'   => 'bellini[menu_text_color]',
 			    'priority'   => 8
 			)
 		));
-
-
-	$wp_customize->add_setting( 'bellini[bellini_additional_color_helper]',
-		array(
-			'type' => 'option',
-			'sanitize_callback'    => 'sanitize_key',
-			)
-	);
-
-			$wp_customize->add_control( new Bellini_UI_Helper_Title ( $wp_customize, 'bellini_additional_color_helper', array(
-					'type' => 'info',
-					'label' => esc_html__('Additional Color Options','bellini'),
-					'section' => 'text_color',
-					'settings'    => 'bellini[bellini_additional_color_helper]',
-					'priority'   => 9,
-			)) );
-
 
 
 	// Primary Color -- Settings
@@ -195,7 +144,7 @@ $wp_customize->add_section('bellini_link_color_section',array(
 
 		$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'bellini_primary_color',
 			array(
-				'label'      		=> esc_html__( 'Other Colors', 'bellini' ),
+				'label'      		=> esc_html__( 'Supporting Elements Colors', 'bellini' ),
 				'description'      	=> esc_html__( 'Applies to header sub menu, Scroll To Top. ', 'bellini' ),
 				'section'    		=> 'text_color',
 				'settings'   		=> 'bellini[bellini_primary_color]',

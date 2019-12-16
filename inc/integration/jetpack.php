@@ -6,38 +6,56 @@
  *
  * @package bellini
  */
+
+
+
 /**
  * Jetpack setup function.
+ *
+ * See: https://jetpack.me/support/infinite-scroll/
+ * See: https://jetpack.me/support/responsive-videos/
  */
 
-function bellini_jetpack_setup() {
-    /**
-     * Add theme support for Infinite Scroll.
-     * See: http://jetpack.me/support/infinite-scroll/
-     */
-	if(Jetpack::is_module_active( 'infinite-scroll' )):
+if ( class_exists( 'Jetpack' ) ) :
 
-		add_theme_support( 'infinite-scroll', array(
-			'container' => 'content',
-			'render'    => 'bellini_infinite_scroll_render',
-			'footer'    => 'page',
-		) );
-	endif;
+	if ( ! function_exists( 'bellini_jetpack_setup' ) ) {
+		function bellini_jetpack_setup() {
 
-	add_theme_support( 'jetpack-responsive-videos' );
-	/*
-	 * Let JetPack manage the site logo.
-	 * By adding theme support, we declare that this theme does use the default
-	 * JetPack Site Logo functionality, if the module is activated.
-	 *
-	 * See: http://jetpack.me/support/site-logo/
-	 */
-	add_theme_support( 'site-logo', array( 'size' => 'full' ) );
-	add_theme_support( 'jetpack-portfolio' );
-}
+			if(Jetpack::is_module_active( 'infinite-scroll' )):
+				add_theme_support( 'infinite-scroll', array(
+					'container' => 'content',
+					'render'    => 'bellini_infinite_scroll_render',
+					'footer'    => 'page',
+				) );
+			endif;
 
-add_action( 'after_setup_theme', 'bellini_jetpack_setup' );
+			add_theme_support( 'jetpack-responsive-videos' );
+			/*
+			 * Let JetPack manage the site logo.
+			 * By adding theme support, we declare that this theme does use the default
+			 * JetPack Site Logo functionality, if the module is activated.
+			 *
+			 * See: http://jetpack.me/support/site-logo/
+			 */
+			add_theme_support( 'site-logo', array( 'size' => 'full' ) );
+			add_theme_support( 'jetpack-portfolio' );
+		}
+	}
 
-function bellini_infinite_scroll_render() {
-	get_template_part( 'template-parts/content-lb-1');
+	add_action( 'after_setup_theme', 'bellini_jetpack_setup' );
+
+	if ( ! function_exists( 'bellini_dequeue_jetpack_devicepx' ) ) {
+		function bellini_dequeue_jetpack_devicepx() {
+		    wp_dequeue_script( 'devicepx' );
+		}
+	}
+
+	add_action( 'wp_enqueue_scripts', 'bellini_dequeue_jetpack_devicepx' );
+
+endif;
+
+if ( ! function_exists( 'bellini_infinite_scroll_render' ) ) {
+	function bellini_infinite_scroll_render() {
+		get_template_part( 'template-parts/content-lb-1');
+	}
 }

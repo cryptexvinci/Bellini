@@ -2,73 +2,6 @@
 /*--------------------------------------------------------------
 ## Position
 --------------------------------------------------------------*/
-
-/*--------------------------------------------------------------
-## Layout & Position Section
---------------------------------------------------------------*/
-
-	// General
-	$wp_customize->add_section('bellini_general_layout',array(
-		'title' => esc_html__( 'Site Wide Layouts', 'bellini' ),
-		'capability' => 'edit_theme_options',
-		'priority' => 1,
-		'panel' => 'bellini_placeholder_layout_panel'
-		)
-	);
-
-	// Header Layout Section
-	$wp_customize->add_section('bellini_header_section_layout',array(
-		'title' => esc_html__( 'Header Layouts', 'bellini' ),
-		'capability' => 'edit_theme_options',
-		'priority' => 2,
-		'panel' => 'bellini_placeholder_layout_panel'
-		)
-	);
-
-	// Header Havigation  Section Layout
-	$wp_customize->add_section('bellini_header_navigation_section',array(
-		'title' => esc_html__( 'Header Havigation Layout', 'bellini' ),
-		'capability' => 'edit_theme_options',
-		'priority' => 3,
-		'panel' => 'bellini_placeholder_layout_panel'
-		)
-	);
-
-	// Posts Layout
-	$wp_customize->add_section('bellini_post_layout_settings',array(
-			'title' => esc_html__( 'Post Layouts', 'bellini' ),
-			'capability' => 'edit_theme_options',
-			'priority' => 4,
-			'panel' => 'bellini_placeholder_layout_panel'
-		)
-	);
-
-	// Page Layout
-	$wp_customize->add_section('bellini_page_layout_settings',array(
-			'title' => esc_html__( 'Page Layouts', 'bellini' ),
-			'capability' => 'edit_theme_options',
-			'priority' => 5,
-			'panel' => 'bellini_placeholder_layout_panel'
-		)
-	);
-
-	// Footer Layout
-	$wp_customize->add_section('bellini_layout_settings_footer',array(
-			'title' => esc_html__( 'Footer Layouts', 'bellini' ),
-			'capability' => 'edit_theme_options',
-			'priority' => 6,
-			'panel' => 'bellini_placeholder_layout_panel'
-		)
-	);
-
-	// Other Layout
-	$wp_customize->add_section('bellini_layout_settings_other',array(
-			'title' => esc_html__( 'Other Layouts', 'bellini' ),
-			'capability' => 'edit_theme_options',
-			'priority' => 7,
-			'panel' => 'bellini_placeholder_layout_panel'
-		)
-	);
 /*--------------------------------------------------------------
 ## General Layout
 --------------------------------------------------------------*/
@@ -135,24 +68,9 @@
                'priority'   	=> 3,
 			));
 
-	// Website Background
-	$wp_customize->add_setting( 'bellini[bellini_website_background_helper]',
-		array(
-			'type' 				=> 'option',
-			'sanitize_callback' => 'sanitize_key',
-			)
-	);
-
-			$wp_customize->add_control( new Bellini_UI_Helper_Title ( $wp_customize, 'bellini_website_background_helper', array(
-					'type' => 'info',
-					'label' => esc_html__('Website Background Image','bellini'),
-					'section' => 'bellini_general_layout',
-					'settings'    => 'bellini[bellini_website_background_helper]',
-					'priority'   => 4,
-			)) );
 
 	$wp_customize->get_control( 'background_image' )->priority 	= 5;
-	$wp_customize->get_control( 'background_image' )->section 	= 'bellini_general_layout';
+	$wp_customize->get_control( 'background_image' )->section 	= 'section_color';
 
 /*--------------------------------------------------------------
 ## Header Layout
@@ -279,13 +197,13 @@
 			$wp_customize->add_control( new Bellini_UI_Helper_Title ( $wp_customize, 'bellini_header_background_helper', array(
 					'type' => 'info',
 					'label' => esc_html__('Header Image','bellini'),
-					'section' => 'bellini_header_section_layout',
+					'section' => 'bellini_header_color_section',
 					'settings'    => 'bellini[bellini_header_background_helper]',
-					'priority'   => 5,
+					'priority'   => 9,
 			)) );
 
-	$wp_customize->get_control( 'header_image' )->priority 	= 6;
-	$wp_customize->get_control( 'header_image' )->section 		= 'bellini_header_section_layout';
+	$wp_customize->get_control( 'header_image' )->priority 	= 10;
+	$wp_customize->get_control( 'header_image' )->section 		= 'bellini_header_color_section';
 /*--------------------------------------------------------------
 ## Header Menu Layout
 --------------------------------------------------------------*/
@@ -413,7 +331,7 @@
 
 		$wp_customize->add_control( 'bellini_layout_single-post',array(
 				'label'      => esc_html__( 'Single Post Layout', 'bellini' ),
-				'section'    => 'bellini_post_layout_settings',
+				'section'    => 'bellini_single_post_layout_settings',
 				'settings'   => 'bellini[bellini_layout_single-post]',
 			    'priority'   => 2,
 			    'type'       => 'radio',
@@ -540,7 +458,7 @@
 
 		$wp_customize->add_control( 'footer_widget_alignment',array(
 				'label'      => esc_html__( 'Footer Widget Alignment', 'bellini' ),
-				'section'    => 'bellini_layout_settings_footer',
+				'section'    => 'bellini_settings_footer_widget',
 				'settings'   => 'bellini[footer_widget_alignment]',
 			    'priority'   => 2,
 			    'type'       => 'radio',
@@ -568,7 +486,7 @@
 			array(
 				'label'      	=> esc_html__( 'Footer Widget Columns', 'bellini' ),
 				'description'   => esc_html__( 'Display the footer widgets in 1, 2, 3 or 4 columns', 'bellini' ),
-				'section'    	=> 'bellini_layout_settings_footer',
+				'section'    	=> 'bellini_settings_footer_widget',
 				'settings'   	=> 'bellini[bellini_footer_widget_column_selector]',
 			    'priority'   	=> 3,
 			    'type'       	=> 'select',

@@ -25,8 +25,17 @@ add_action( 'homepage', 'bellini_frontpage_text_field_shortcode',	70 );
 add_action( 'homepage', 'bellini_front_default_page_content',		110 );
 
 
-if($bellini['bellini_show_frontpage_slider_pages'] == true) :
+if( $bellini['bellini_show_frontpage_slider_pages'] == true ) :
 	add_action( 'bellini_before_page_content', 'bellini_static_slider',		   			10 );
 endif;
 
 add_action( 'wp_footer', 'bellini_scroll_to_top' );
+add_action( 'wp_footer', 'bellini_structured_data' );
+
+
+// Pagination
+
+add_action('bellini_loop_after', 'bellini_pagination');
+
+add_action( 'customize_controls_enqueue_scripts', 'bellini_upsell_notice' );
+add_filter( 'excerpt_length', 'bellini_excerpt_length', 999 );
